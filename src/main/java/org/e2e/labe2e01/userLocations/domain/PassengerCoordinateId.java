@@ -1,5 +1,6 @@
 package org.e2e.labe2e01.userLocations.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,8 +16,12 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PassengerCoordinateId implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "passenger_id")
     private Long passengerId;
 
+    @Column(name = "coordinate_id")
     private Long coordinateId;
 
     @Override

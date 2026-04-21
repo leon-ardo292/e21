@@ -51,7 +51,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "phone_number", nullable = false, unique = true)
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -63,4 +63,11 @@ public class User {
 
     @OneToMany(mappedBy = "target")
     private List<Review> targetReviews = new ArrayList<>();
+
+    @PrePersist
+    protected void onCreate() {
+        if (createdAt == null) {
+            createdAt = ZonedDateTime.now();
+        }
+    }
 }
