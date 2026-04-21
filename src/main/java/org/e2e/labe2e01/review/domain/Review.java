@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Min;
 import lombok.*;
 import org.e2e.labe2e01.ride.domain.Ride;
 import org.e2e.labe2e01.user.domain.User;
+import org.hibernate.annotations.Check;
 
 @Entity
 @Getter
@@ -13,6 +14,7 @@ import org.e2e.labe2e01.user.domain.User;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "review")
+@Check(constraints = "rating BETWEEN 0 AND 5")
 public class Review {
 
     @Id

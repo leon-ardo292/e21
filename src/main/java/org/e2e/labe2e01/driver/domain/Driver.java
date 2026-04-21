@@ -20,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Driver extends User {
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private Category category;
 

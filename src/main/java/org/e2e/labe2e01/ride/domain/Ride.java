@@ -26,7 +26,7 @@ public class Ride {
     @Column(nullable = false)
     private Double price;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private Status status;
 

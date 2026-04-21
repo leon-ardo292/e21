@@ -1,9 +1,14 @@
 package org.e2e.labe2e01.vehicle.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.e2e.labe2e01.driver.domain.Driver;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 public class Vehicle {
 
@@ -25,4 +30,7 @@ public class Vehicle {
 
     @Column(nullable = false)
     private String model;
+
+    @OneToOne(mappedBy = "vehicle")
+    private Driver driver;
 }

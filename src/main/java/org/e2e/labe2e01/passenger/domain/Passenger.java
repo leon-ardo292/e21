@@ -1,10 +1,7 @@
 package org.e2e.labe2e01.passenger.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +14,6 @@ import org.e2e.labe2e01.userLocations.domain.UserLocation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 @Entity
 @Getter
 @Setter
@@ -30,4 +26,13 @@ public class Passenger extends User {
 
     @OneToMany(mappedBy = "passenger", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLocation> places = new ArrayList<>();
+
+    public void addPlace(Coordinate coordinate, String description) {
+        UserLocation userLocation = new UserLocation(this, coordinate, description);
+        places.add(userLocation);
+    }
+
+    public void removePlace(Coordinate coordinate) {
+        places.removeIf(place -> place.getCoordinate().equals(coordinate));
+    }
 }
