@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.e2e.labe2e01.passenger.domain.Passenger;
 import org.e2e.labe2e01.passenger.domain.PassengerService;
-import org.e2e.labe2e01.userLocations.domain.UserLocation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +36,7 @@ public class PassengerController {
     }
 
     @GetMapping("/{id}/places")
-    public List<UserLocation> getPlaces(@PathVariable Long id) {
+    public List<Coordinate> getPlaces(@PathVariable Long id) {
         return passengerService.getPlaces(id);
     }
 

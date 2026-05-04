@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.e2e.labe2e01.coordinate.domain.Coordinate;
 import org.e2e.labe2e01.coordinate.infrastructure.CoordinateRepository;
 import org.e2e.labe2e01.passenger.infrastructure.PassengerRepository;
-import org.e2e.labe2e01.userLocations.domain.UserLocation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,8 +35,16 @@ public class PassengerService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserLocation> getPlaces(Long id) {
-        return getById(id).getPlaces();
+    public List<Coordinate> getPlaces(Long id) {
+        return getById(id).getPlaces()
+                .stream()
+                .map(place -> {
+                    Coordinate coordinate = place.getCoordinate();
+                    Coordinate response = new Coordinate(coordinate.getLatitude(), coordinate.getLongitude());
+                    response.setId(coordinate.getId());
+                    return response;
+                })
+                .toList();
     }
 
     public void deletePlace(Long passengerId, Long coordinateId) {
